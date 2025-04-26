@@ -11,7 +11,7 @@ from paths import PATHS
 
 default_args = {
     'owner': 'airflow',
-    'start_date': datetime(2023, 1, 1),
+    'start_date': datetime(2025, 4, 26),
     'retries': 1
 }
 
@@ -27,21 +27,17 @@ with DAG('brewery_pipeline',
 
     silver_task = SparkSubmitOperator(
         task_id='process_silver',
-        application='silver.py',
+        application='processing/silver.py',
         application_args=[PATHS["bronze_raw"], PATHS["silver"]],
-        conf={
-            "spark.master": "local[*]"  # Overrides any other setting
-        },
+        conn_id = 'spark_default',
         dag=dag
     )
 
     gold_task = SparkSubmitOperator(
         task_id='process_gold',
-        application='gold.py',
+        application='processing/gold.py',
         application_args=[PATHS["silver"], PATHS["gold"]],
-        conf={
-            "spark.master": "local[*]"  # Overrides any other setting
-        },
+        conn_id = 'spark_default',
         dag=dag
     )
 
