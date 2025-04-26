@@ -1,8 +1,13 @@
 from datetime import datetime
+from pathlib import Path
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.providers.apache.spark.operators.spark_submit import SparkSubmitOperator
-from config.paths import PATHS
+import sys
+sys.path.append(f"{Path(__file__).parent}/processing")
+from bronze import fetch_breweries
+from paths import PATHS
+
 
 default_args = {
     'owner': 'airflow',
@@ -11,25 +16,33 @@ default_args = {
 }
 
 with DAG('brewery_pipeline',
-         schedule_interval='@daily',
+         schedule='@daily',
          default_args=default_args) as dag:
 
     fetch_task = PythonOperator(
         task_id='fetch_raw_data',
-        python_callable='pipelines.bronze.fetch_breweries',
+        python_callable=fetch_breweries,
         op_kwargs={'output_path': PATHS["bronze_raw"]}
     )
 
     silver_task = SparkSubmitOperator(
         task_id='process_silver',
-        application='scripts/breweries/silver.py',
+        application='silver.py',
         application_args=[PATHS["bronze_raw"], PATHS["silver"]],
+        conf={
+            "spark.master": "local[*]"  # Overrides any other setting
+        },
+        dag=dag
     )
 
     gold_task = SparkSubmitOperator(
         task_id='process_gold',
-        application='scripts/breweries/gold.py',
+        application='gold.py',
         application_args=[PATHS["silver"], PATHS["gold"]],
+        conf={
+            "spark.master": "local[*]"  # Overrides any other setting
+        },
+        dag=dag
     )
 
     fetch_task >> silver_task >> gold_task

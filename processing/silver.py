@@ -1,17 +1,13 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
-import argparse
+import sys
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--input-path', required=True)
-    parser.add_argument('--output-path', required=True)
-    args = parser.parse_args()
-    
+        
     spark = SparkSession.builder.appName("SilverProcessing").getOrCreate()
     
     try:
-        df = spark.read.json(args.input_path)
+        df = spark.read.json(sys.argv[1])
         
         # Clean data
         df = (df
@@ -25,7 +21,7 @@ if __name__ == "__main__":
         # Write partitioned
         df.write.mode("overwrite") \
           .partitionBy("country", "state") \
-          .parquet(args.output_path)
+          .parquet(sys.argv[2])
           
     except Exception as e:
         spark.stop()

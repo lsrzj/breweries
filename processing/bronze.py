@@ -1,7 +1,7 @@
 import requests
 import json
 from pathlib import Path
-from config.paths import PATHS  # Reuse centralized paths
+from paths import PATHS  # Reuse centralized paths
 
 def fetch_breweries(output_path: str = PATHS["bronze_raw"]) -> str:
     """
@@ -12,7 +12,7 @@ def fetch_breweries(output_path: str = PATHS["bronze_raw"]) -> str:
     response = requests.get(url, timeout=30)
     response.raise_for_status()
     
-    Path(output_path).parent.mkdir(exist_ok=True)
+    Path(output_path).parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, 'w') as f:
         json.dump(response.json(), f)
     
