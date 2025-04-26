@@ -1,2 +1,3 @@
 /data/
-/_pycache/
+/__pycache__/
+/processing/__pycache__/
