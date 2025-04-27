@@ -67,6 +67,7 @@ current directory
 Go to your web browser and access http://localhost:8080. If it
 doesn't load, it's because Airflow's initialization process
 is not finished yet. Reload the page until you get the login page.
+![Login page image](https://github.com/lsrzj/breweries/blob/main/docs/login.png)
 
 ### 5. Get the admin password to login
 You'll find the generated password into Airflow's directory, open it
