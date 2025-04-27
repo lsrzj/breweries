@@ -80,9 +80,11 @@ Click on the Admin menu with a gear icon on the screen's right hand side
 ![Main page image](https://github.com/lsrzj/breweries/blob/main/docs/main.png)
 Choose "Connections"
 ![Admin sub menu](https://github.com/lsrzj/breweries/blob/main/docs/admin_sub.png)
-Click on "Add Connections" button on the left hand side of the screen
+Click on "Add Connections" button on the right hand side of the screen
 ![Admin sub menu](https://github.com/lsrzj/breweries/blob/main/docs/admin_connections.png)
-Add Spark's connection configurations as in the image below:
+Add Spark's connection configurations as in the image below, scroll down to find the "Save" button to save the configurations:
 ![Admin sub menu](https://github.com/lsrzj/breweries/blob/main/docs/admin_add_connection.png)
+The connection list should be like this now:
+![Admin sub menu](https://github.com/lsrzj/breweries/blob/main/docs/admin_connections_list.png)
 
 
