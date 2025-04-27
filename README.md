@@ -69,10 +69,20 @@ doesn't load, it's because Airflow's initialization process
 is not finished yet. Reload the page until you get the login page.
 ![Login page image](https://github.com/lsrzj/breweries/blob/main/docs/login.png)
 
-### 5. Get the admin password to login
+### 5. Login
 You'll find the generated password into Airflow's directory, open it
 ~~~bash
   $ cat ~/airflow/simple_auth_manager_passwords.json.generated
 ~~~
 
 ### 6. Configure Airflow's Spark connection
+Click on the Admin menu with a gear icon on the screen's right hand side
+![Main page image](https://github.com/lsrzj/breweries/blob/main/docs/main.png)
+Choose "Connections"
+![Admin sub menu](https://github.com/lsrzj/breweries/blob/main/docs/admin_sub.png)
+Click on "Add Connections" button on the left hand side of the screen
+![Admin sub menu](https://github.com/lsrzj/breweries/blob/main/docs/admin_connections.png)
+Add Spark's connection configurations as in the image below:
+![Admin sub menu](https://github.com/lsrzj/breweries/blob/main/docs/admin_add_connection.png)
+
+
