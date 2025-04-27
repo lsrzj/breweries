@@ -38,7 +38,7 @@ if __name__ == "__main__":
               .withColumn("phone", regexp_replace(col("phone"), r"[^\p{N}]", ""))
               # removing duplicate meaning columns and unifying into one as state and state_province are the same when state_province is not null
               .withColumn("state", coalesce(col("state"), col("state_province")))
-              # removing duplicate meaning columns and unifying into one as street and address_1 are the same when state_province is not null
+              # removing duplicate meaning columns and unifying into one as street and address_1 are the same when address_1 is not null
               .withColumn("address_1", coalesce(col("street"), col("address_1")))
               # removing any non letter and non space characters from country
               .withColumn("country", regexp_replace(col("country"), r"[^\p{L}\p{Z}]", ""))
@@ -59,7 +59,7 @@ if __name__ == "__main__":
               .withColumn("address_1", trim(col("address_1")))
               .withColumn("address_2", trim(col("address_2")))
               .withColumn("address_3", trim(col("address_3")))
-              # trimming city, street, country and state to remove any leading or trailing spaces to avoid creating multiple partitions for the same country/state
+              # trimming country and state to remove any leading or trailing spaces to avoid creating multiple partitions for the same country/state
               .withColumn("country", trim(col("country")))
               .withColumn("state", trim(col("state")))
               # dropping columns that are not needed, they were unified into one
