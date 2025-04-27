@@ -26,7 +26,11 @@ type/location
 ## Run Locally  
 ### 1. Install Apache Airflow 
 Please refer to the official documentation at:
-<p><a href="https://airflow.apache.org/docs/apache-airflow/stable/installation/installing-from-pypi.html">https://airflow.apache.org/docs/apache-airflow/stable/installation/installing-from-pypi.html</a></p>
+<p>
+  <a href="https://airflow.apache.org/docs/apache-airflow/stable/installation/installing-from-pypi.html">
+    https://airflow.apache.org/docs/apache-airflow/stable/installation/installing-from-pypi.html
+  </a>
+</p>
 
 ### 2. Clone the project  
 ~~~bash  
@@ -81,10 +85,18 @@ Click on the Admin menu with a gear icon on the screen's right hand side
 Choose "Connections"
 ![Admin sub menu](https://github.com/lsrzj/breweries/blob/main/docs/admin_sub.png)
 Click on "Add Connections" button on the right hand side of the screen
-![Admin sub menu](https://github.com/lsrzj/breweries/blob/main/docs/admin_connections.png)
+![Admin Connections](https://github.com/lsrzj/breweries/blob/main/docs/admin_connections.png)
 Add Spark's connection configurations as in the image below, scroll down to find the "Save" button to save the configurations:
-![Admin sub menu](https://github.com/lsrzj/breweries/blob/main/docs/admin_add_connection.png)
+![Admin add connection](https://github.com/lsrzj/breweries/blob/main/docs/admin_add_connection.png)
 The connection list should be like this now:
-![Admin sub menu](https://github.com/lsrzj/breweries/blob/main/docs/admin_connections_list.png)
+![Admin connections list](https://github.com/lsrzj/breweries/blob/main/docs/admin_connections_list.png)
+
+### 7. Trigger brewery_pipeline DAG
+Go to Dags page clicking on Dags menu on the left hand side menu, maybe you'll find many example DAGs there,
+find the brewery_pipeline and click on it
+![Dags list](https://github.com/lsrzj/breweries/blob/main/docs/dags.png)
+Trigger the DAG clicking on the Trigger button on the right hand side of the screen.
+![Dags list](https://github.com/lsrzj/breweries/blob/main/docs/brewery_pipeline.png)
+
 
 
