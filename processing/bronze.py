@@ -23,7 +23,7 @@ Airflow will retry
 def fetch_breweries(output_path: str = PATHS["bronze_raw"], page=1, items_per_page=200, max_pages_to_fetch=50) -> str:
     url = "https://api.openbrewerydb.org/v1/breweries"
     breweries = []
-    Path(output_path).parent.mkdir(parents=True, exist_ok=True)
+    Path(output_path).mkdir(parents=True, exist_ok=True)
     while True and page <= max_pages_to_fetch:
         # Fetch data from API
         response = requests.get(
